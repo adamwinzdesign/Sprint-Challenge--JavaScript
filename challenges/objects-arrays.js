@@ -16,7 +16,7 @@
 // Whenever JavaScript’s call or apply method is used, this is explicitly defined.
 
 // Why do we need super() in an extended class?  
-// The super keyword allows the properties and methods that were declared in a parent class to be accessible by calling the child class.
+// The super keyword allows the properties and methods that were declared in a parent class to be accessible by a child class.
 
 
 // ==== Objects ====
@@ -29,27 +29,54 @@
 
 // tyrannosaurus, carnivorous, 7000kg, 12m, Late Cretaceous
 
+const tyrannosaurus = {
+  name: 'tyrannosaurus',
+  diet: 'carniverous',
+  weight: 7000,
+  length: 12,
+  period: 'Late Cretaceous',
+  roar() {
+    return `RAWERSRARARWERSARARARRRR!`;
+  }
+}
+
 // stegosaurus, herbivorous, 2000kg, 9m, Late Jurassic
 
+const stegosaurus = {
+  name: 'stegosaurus',
+  diet: 'herbivorous',
+  weight: 2000,
+  length: 9,
+  period: 'Late Jurassic'
+}
+
 // velociraptor, carnivorous, 15kg, 1.8m, Late Cretaceous
+
+const velociraptor = {
+  name: 'velociraptor',
+  diet: 'carniverous',
+  weight: 15,
+  length: 1.8,
+  period: 'Late Cretaceous'
+}
 
 // Using your dinosaur objects, log answers to these questions:
 
 // How much did tyrannosaurus weigh?
-console.log();
+console.log(tyrannosaurus.weight);
 
 // What was the diet of a velociraptor?
-console.log();
+console.log(velociraptor.diet);
 
 // How long was a stegosaurus?
-console.log();
+console.log(stegosaurus.length);
 
 // What time period did tyrannosaurus live in?
-console.log();
+console.log(tyrannosaurus.period);
 
 
 // Create a new roar method for the tyrannosaurus.  When called, return "RAWERSRARARWERSARARARRRR!" Log the result.
-console.log();
+console.log(tyrannosaurus.roar());
 
 
 // ==== Arrays ====
