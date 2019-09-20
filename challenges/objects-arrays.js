@@ -1,3 +1,24 @@
+// Self-study questions:
+
+// Describe the biggest difference between .forEach & .map.
+// .forEach executes a function once for each item in an array, whereas .map creates a new array based on whatever was passed into .map.
+
+// What is the difference between a function and a method?
+// A method is a function that is placed within an object.
+
+// What is closure?
+// A closure is the combination of a function and the environment within which that function was declared.  It pertains to scope.
+
+// Describe the four rules of the 'this' keyword.
+// When in the global scope, the value of this will be the window/console Object, or in other words, if this is not bound to anything else, it will bind to the window by default.
+// Whenever a function is called by a preceding dot, the object before that dot is this.
+// Whenever a constructor function is used, this refers to the specific instance of the object that is created and returned by the constructor function.
+// Whenever JavaScript’s call or apply method is used, this is explicitly defined.
+
+// Why do we need super() in an extended class?  
+// The super keyword allows the properties and methods that were declared in a parent class to be accessible by a child class.
+
+
 // ==== Objects ====
 
 /* 
@@ -8,27 +29,54 @@
 
 // tyrannosaurus, carnivorous, 7000kg, 12m, Late Cretaceous
 
+const tyrannosaurus = {
+  name: 'tyrannosaurus',
+  diet: 'carniverous',
+  weight: 7000,
+  length: 12,
+  period: 'Late Cretaceous',
+  roar() {
+    return `RAWERSRARARWERSARARARRRR!`;
+  }
+}
+
 // stegosaurus, herbivorous, 2000kg, 9m, Late Jurassic
 
+const stegosaurus = {
+  name: 'stegosaurus',
+  diet: 'herbivorous',
+  weight: 2000,
+  length: 9,
+  period: 'Late Jurassic'
+}
+
 // velociraptor, carnivorous, 15kg, 1.8m, Late Cretaceous
+
+const velociraptor = {
+  name: 'velociraptor',
+  diet: 'carniverous',
+  weight: 15,
+  length: 1.8,
+  period: 'Late Cretaceous'
+}
 
 // Using your dinosaur objects, log answers to these questions:
 
 // How much did tyrannosaurus weigh?
-console.log();
+console.log(tyrannosaurus.weight);
 
 // What was the diet of a velociraptor?
-console.log();
+console.log(velociraptor.diet);
 
 // How long was a stegosaurus?
-console.log();
+console.log(stegosaurus.length);
 
 // What time period did tyrannosaurus live in?
-console.log();
+console.log(tyrannosaurus.period);
 
 
 // Create a new roar method for the tyrannosaurus.  When called, return "RAWERSRARARWERSARARARRRR!" Log the result.
-console.log();
+console.log(tyrannosaurus.roar());
 
 
 // ==== Arrays ====
@@ -52,7 +100,15 @@ const graduates = [
 
 Once you have the new array created, sort the universities alphabetically and log the result. */
 const universities = [];
+
+graduates.forEach(function(currentVal){
+  universities.push(currentVal.university);
+});
+
+universities.sort();
+
 console.log(universities);
+
 
 /* Request 2: Create a new array called contactInfo that contains both first name and email of each student. This will be an array of strings.
 
@@ -61,12 +117,23 @@ The resulting contact information strings should have a space between the first 
 
 Log the result of your new array. */
 const contactInfo = [];
+
+graduates.forEach(function(currentVal){
+  contactInfo.push(`${currentVal.first_name} ${currentVal.email}`);
+});
+
 console.log(contactInfo);
 
 /* Request 3: Find out how many universities have the string "Uni" included in their name. Create a new array called unisWithUni that contains them all. This will be an array of objects. Log the result. */
 const unisWithUni = [];
-console.log(unisWithUni);
 
+graduates.forEach(function(uni){
+  if(uni.university.search('Uni') >= 0) {
+    unisWithUni.push(uni);
+  }
+})
+
+console.log(unisWithUni);
 
 // ==== ADVANCED Array Methods ====
 
@@ -91,6 +158,11 @@ The zoos want to display both the scientific name and the animal name in front o
 
 */
 const displayNames = [];
+
+zooAnimals.forEach(function(currentVal){
+  displayNames.push(`Name: ${currentVal.animal_name}, Scientific: ${currentVal.scientific_name}`);
+});
+
 console.log(displayNames);
 
 /* Request 2: .map()
@@ -99,7 +171,10 @@ The zoos need a list of all their animal's names (animal_name only) converted to
 
 */
 
-const lowCaseAnimalNames = [];
+const lowCaseAnimalNames = zooAnimals.map(function(item){
+  return item.animal_name.toLowerCase();
+});
+
 console.log(lowCaseAnimalNames);
 
 /* Request 3: .filter() 
@@ -107,7 +182,11 @@ console.log(lowCaseAnimalNames);
 The zoos are concerned about animals with a lower population count. Using filter, create a new array of objects called lowPopulationAnimals which contains only the animals with a population less than 5.
 
 */
-const lowPopulationAnimals = [];
+
+const lowPopulationAnimals = zooAnimals.filter(function(item) {
+  return item.population < 5;
+});
+
 console.log(lowPopulationAnimals);
 
 /* Request 4: .reduce() 
@@ -115,9 +194,12 @@ console.log(lowPopulationAnimals);
 The zoos need to know their total animal population across the United States. Find the total population from all the zoos using the .reduce() method. Remember the reduce method takes two arguments: a callback (which itself takes two args), and an initial value for the count.
 
 */
-const populationTotal = 0;
-console.log(populationTotal);
 
+const populationTotal = zooAnimals.reduce(function(accumulator, item){
+  return accumulator + item.population;
+}, 0);
+
+console.log(populationTotal);
 
 /*
 
